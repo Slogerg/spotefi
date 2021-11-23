@@ -155,10 +155,9 @@ class GameController extends Controller
 
     public function putPlaylist(Request $request)
     {
-
-
         User::where('id',Auth::user()->id)->update([
             'currentPlaylist' => $request->playlist
         ]);
+        return redirect()->route('home');
     }
 }

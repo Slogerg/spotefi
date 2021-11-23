@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/spotify',[\App\Http\Controllers\SpotifyController::class,'index'])->name('spotify');
 Route::get('/play',[\App\Http\Controllers\GameController::class,'index'])->name('game');

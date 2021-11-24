@@ -23,9 +23,11 @@ class SpotifyController extends Controller
         $api = new SpotifyWebAPI\SpotifyWebAPI();
         $api->setAccessToken($accessToken);
 
-        dd(
-            $results = $api->search('gorillaz', 'artist')
-        );
+//        dd(
+//            $results = $api->search('gorillaz', 'artist')
+//        );
+        return view('search');
     }
+
 
 }

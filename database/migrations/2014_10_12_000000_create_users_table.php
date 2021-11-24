@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('currentPlaylist')->nullable();
             $table->rememberToken();
             $table->unsignedInteger('songs_seen')->default(0);
             $table->unsignedInteger('songs_correct')->default(0)->index();

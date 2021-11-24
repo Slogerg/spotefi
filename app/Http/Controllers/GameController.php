@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Playlist;
 use App\Models\User;
 use Auth;
 use Cache;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 use SpotifyWebAPI;
@@ -18,6 +20,11 @@ class GameController extends Controller
 
     public function __construct()
     {
+        $playlist = Playlist::orderBy('created_at','desc')->first();
+        if(!$playlist)
+            $playlist = "4OSIkmIjmBFz5monq4GqVj";
+        else
+            $playlist = $playlist->code;
         // Attempt to get access token
         if (!Cache::has('accessToken')) {
             // Create the Spotify Client
@@ -38,6 +45,9 @@ class GameController extends Controller
             }
         }
 
+
+
+
         // Use access token to connect to API
         $this->spotifyApi = new SpotifyWebAPI\SpotifyWebAPI();
         $this->spotifyApi->setAccessToken(Cache::get('accessToken'));
@@ -47,12 +57,13 @@ class GameController extends Controller
 
             Cache::put(
                 'playlist',
-                $this->spotifyApi->getPlaylistTracks('4OSIkmIjmBFz5monq4GqVj'),
+                $this->spotifyApi->getPlaylistTracks($playlist),
                 2
             );
         }
 
         $this->spotifyChart = Cache::get('playlist');
+
     }
 
     /**
@@ -62,7 +73,7 @@ class GameController extends Controller
      */
     public function index(Request $request)
     {
-        // Get our session of recently used tracks
+        // Get our session ofx recently used tracks
         $recents = (session('recents') ?: collect());
         // Run some filters over the track list
         $tracks = collect($this->spotifyChart->items)->reject(function($track) use ($recents) {
@@ -155,9 +166,7 @@ class GameController extends Controller
 
     public function putPlaylist(Request $request)
     {
-        User::where('id',Auth::user()->id)->update([
-            'currentPlaylist' => $request->playlist
-        ]);
+        Playlist::insert(['code' => $request->playlist,'created_at' => Carbon::now()]);
         return redirect()->route('home');
     }
 }

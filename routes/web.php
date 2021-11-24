@@ -26,7 +26,7 @@ Route::get('/leaderboard',[\App\Http\Controllers\LeaderboardController::class,'i
 Route::get('/endtest',[\App\Http\Controllers\EndTestController::class,'index'])->name('endtest');
 Route::get('/currentPlaylist',[\App\Http\Controllers\GameController::class,'indexPlaylist'])->name('currentPlaylist');
 
-Route::put('/putPlaylist',[\App\Http\Controllers\GameController::class,'putPlaylist'])->name('putPlaylist');
+Route::post('/putPlaylist',[\App\Http\Controllers\GameController::class,'putPlaylist'])->name('putPlaylist');
 //Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 //Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 

@@ -10,11 +10,10 @@
 {{--</style>--}}
 
 
-    <form style=" padding: 0 500px" action="{{route('')}}" method="POST">
-        @method('PUT')
+    <form style=" padding: 0 500px" action="{{route('putPlaylist')}}" method="POST">
         @csrf
 
-        <input placeholder="Введіть ID плейліста" style="width: 100%" type="text" >
+        <input placeholder="Введіть ID плейліста" name = "playlist" style="width: 100%" type="text" >
         <button style="  background-color: #555555; /* Green */
   border: none;
   color: white;

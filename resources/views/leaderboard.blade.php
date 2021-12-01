@@ -2,14 +2,14 @@
 @section('content')
     <div class="columns">
         <div class="column">
-            <h1 class="title">Leaderboard</h1>
+            <h1 class="title">Список переможців</h1>
 
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Correct / Seen</th>
-                    <th>Score</th>
+                    <th>Ім'я</th>
+                    <th>Вгадано / Пройдено</th>
+                    <th>Балів</th>
                 </tr>
                 </thead>
                 <tbody>

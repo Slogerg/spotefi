@@ -2,9 +2,9 @@
 @section('content')
     <div class="columns">
         <div class="column has-text-centered">
-            <p>One song. 30 seconds. Can you name that tune?</p>
+            <p>Одна пісня. 30 секунд. Чи зможете ви згадати дану композиію?</p>
 
-            <p><a class="button is-primary" href="{{ route('game') }}">Play Now</a></p>
+            <p><a class="button is-primary" href="{{ route('game') }}">Грати</a></p>
         </div>
     </div>
 @endsection
